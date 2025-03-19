@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }}</title>
+</head>
+<body>
+    <h1>Articles de la catégorie : {{ category.name }}</h1>
+    
+    {% for article in category.articles.all %}
+        <div>
+            <h3>
+                <a href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
+            </h3>
+        </div>
+    {% empty %}
+        <p>Aucun article pour cette catégorie.</p>
+    {% endfor %}
+    </ul>
+
+    <h2>Sous-catégories :</h2>
+    <ul>
+        {% for subcategory in subcategories %}
+            <li>
+                <a href="{% url 'category_detail' subcategory.id %}">{{ subcategory.name }}</a>
+            </li>
+        {% empty %}
+            <li>Aucune sous-catégorie dans cette catégorie.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'recherche' %}">Retour à la liste des catégories</a>
+    <a href="{% url 'accueil' %}">Retour à l'accueil</a>
+</body>
+</html>

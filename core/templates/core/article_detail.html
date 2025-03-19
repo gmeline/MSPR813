@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+    <p><strong>Publié le :</strong> {{ article.publication_date }}</p>
+
+    <a href="{% url 'category_detail' article.category.id %}">Retour à la catégorie</a>
+    <a href="{% url 'recherche' %}">Retour à la liste des catégories</a>
+    <a href="{% url 'accueil' %}">Retour à l'accueil</a>
+</body>
+</html>
