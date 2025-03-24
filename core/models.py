@@ -19,3 +19,11 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
+class GeneratedImage(models.Model):
+    id = models.AutoField(primary_key=True)  
+    image = models.ImageField(upload_to='generated_images/')  
+    date_created = models.DateTimeField(auto_now_add=True) 
+
+    def __str__(self):
+        return f"Image {self.id} créée le {self.date_created}"
