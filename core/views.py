@@ -3,6 +3,7 @@ from .models import Category
 from .models import Article
 from .forms import CategoryForm
 from .forms import ArticleForm
+from .models import GeneratedImage
 
 def accueil(request):
     return render(request, 'core/accueil.html')
@@ -47,7 +48,9 @@ def category_detail(request, category_id):
 
 def article_detail(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
-    
     return render(request, 'core/article_detail.html', {'article': article})
 
+def GeneratedImageListView(request):
+    images = GeneratedImage.objects.all()
+    return render(request, 'core/images_list.html', {'images': images})
 
