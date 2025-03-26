@@ -21,9 +21,9 @@ class Article(models.Model):
         return self.title
     
 class GeneratedImage(models.Model):
-    id = models.AutoField(primary_key=True)  
-    image = models.ImageField(upload_to='generated_images/')  
-    date_created = models.DateTimeField(auto_now_add=True) 
+    id = models.AutoField(primary_key=True)
+    image_url = models.URLField(default="https://github.com/d-perreaux/OCR_initiation_machine_learning/blob/main/exo_01_regression_lineaire_simple/toto.png?raw=true")
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Image {self.id} créée le {self.date_created}"
+        return f"Image {self.id} générée le {self.date_created}"
