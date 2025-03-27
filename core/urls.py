@@ -11,4 +11,5 @@ urlpatterns = [
     path('article/<int:article_id>/', views.article_detail, name='article_detail'),
     path('images/', GeneratedImageListView, name='generated_image_list'),
     path('graphique/', views.render_graphique_page, name='graphique'),
+    path('list-buckets/', views.list_gcs_buckets, name='list-buckets'),
 ]
