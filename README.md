@@ -1,3 +1,3 @@
 Modèle utilisé : Matplotlib  
 Lancer : python manage.py runserver  
-librairie à installer : django, rest-framework, matplotlib
+librairie à installer : django, rest-framework, matplotlib, pandas
