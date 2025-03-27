@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphique Page</title>
+</head>
+<body>
+    <h1>Graphique basé sur CSV</h1>
+
+    <!-- Formulaire de sélection des filtres -->
+    <form method="get" action="{% url 'graphique' %}">
+        <label for="date_field">Sélectionnez une date :</label>
+        <select name="date_field" id="date_field">
+            <option value="">-- Choisissez une date --</option>
+            {% for date in dates %}
+                <option value="{{ date }}" {% if date == selected_date %}selected{% endif %}>
+                    {{ date }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <!-- Affichez le graphique -->
+    {% if graph_image_url %}
+    <h2>Graphique des pourcentages par candidat</h2>
+    <img src="{{ graph_image_url }}" alt="Graphique des pourcentages">
+    {% endif %}
+
+    <!-- Tableau des données filtrées -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Région</th>
+                <th>Candidat</th>
+                <th>Voix</th>
+                <th>Pourcentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.0 }}</td> 
+                    <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
+                    <td>{{ row.3 }}</td>
+                    <td>{{ row.4 }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
