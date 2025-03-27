@@ -131,6 +131,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "core/mspr-454808-baf9c7d409e4.json"

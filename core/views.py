@@ -8,6 +8,9 @@ from io import BytesIO
 import pandas as pd
 import os
 from django.conf import settings
+from django.http import HttpResponse
+from google.cloud import bigquery
+
 
 def accueil(request):
     return render(request, 'core/accueil.html')
@@ -124,3 +127,21 @@ def election_filter_view(request):
         'form': form,
         'articles': articles_filtered,
     })
+
+def list_gcs_buckets(request):
+    # Créer un client BigQuery avec un fichier de service
+    client = bigquery.Client.from_service_account_json("core/mspr-454808-baf9c7d409e4.json")
+    
+    # Requête BigQuery
+    query = """
+        SELECT *
+        FROM `mspr-454808.Legislative_DW.LEG_CIRC_T2_HDF_MERGE_DW`
+    """
+    query_job = client.query(query)  # Lancer la requête
+    df = query_job.to_dataframe()    # Convertir le résultat en dataframe pandas
+    
+    # Vous pouvez afficher une partie du dataframe dans la réponse HTTP
+    # Pour simplifier, on peut afficher les premières lignes du dataframe
+    df_html = df.head().to_html()  # Convertir les 5 premières lignes en HTML
+
+    return HttpResponse(f"<h1>Résultats BigQuery :</h1>{df_html}")
