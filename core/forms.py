@@ -1,6 +1,9 @@
 from django import forms
 from .models import Category
 from .models import Article
+from .models import ElectionDate
+from pathlib import Path
+import csv
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -19,3 +22,10 @@ class ArticleForm(forms.ModelForm):
         model = Article
         fields = ['title', 'content', 'category']
 
+class ElectionFilterForm(forms.Form):
+    date_field = forms.DateField(
+        widget=forms.DateInput(attrs={
+            'type': 'date', 
+            'class': 'form-control' 
+        })
+    )

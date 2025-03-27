@@ -27,3 +27,9 @@ class GeneratedImage(models.Model):
 
     def __str__(self):
         return f"Image {self.id} générée le {self.date_created}"
+
+class ElectionDate(models.Model):
+    date = models.DateField()
+
+    def __str__(self):
+        return str(self.date)
