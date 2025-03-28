@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "dashboard",
     "landing",
     "machineLearning",
+    "exploration",
     "rest_framework",
     "matplotlib",
 ]
