@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,41 +8,47 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Fascinate+Inline&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<aside>
-    <div class="application-part">
-        <div class="application-icon"></div>
-        <p class="application-text">Prédicta</p>
+    <aside>
+        <div class="application-part">
+            <div class="application-icon"></div>
+            <p class="application-text">Prédicta</p>
+        </div>
+        <div class="wrapper-menu">
+            <nav>
+                <ul>
+
+                    <li class="home-part">
+                        <div class="home-icon"></div>
+                        <div><a class="text-nav" href="/">Accueil</a></div>
+                    </li>
+                    <li class="machine-learning-part">
+                        <div class="machine-learning-icon"></div>
+                        <div><a class="text-nav" href="/machineLearning">Machine Learning</a></div>
+                    </li>
+                    <li class="dashboard-part">
+                        <div class="dashboard-icon"></div>
+                        <div><a class="text-nav" href="/dashboard">Dashboard</a></div>
+                    </li>
+                    <li class="exploration-part">
+                        <div class="exploration-icon"></div>
+                        <div><a class="text-nav" href="/exploration">Exploration de donnée</a></div>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="account-part">
+                <div class="account-icon"></div>
+                <p class="account-text">Invité</p>
+            </div>
+        </div>
+    </aside>
+    <div class="content-wrap">
+        {% block content %} {% endblock %}
     </div>
-    <nav>
-        <ul>
-            <li class="home-part">
-                <div class="home-icon"></div>
-                <div><a class="text-nav" href="/">Accueil</a></div>
-            </li>
-            <li class="machine-learning-part">
-                <div class="machine-learning-icon"></div>
-                <div><a class="text-nav" href="/machineLearning">Machine Learning</a></div>
-            </li>
-            <li class="dashboard-part">
-                <div class="dashboard-icon"></div>
-                <div><a class="text-nav" href="/dashboard">Dashboard</a></div>
-            </li>
-            <li class="exploration-part">
-                <div class="exploration-icon"></div>
-                <div><a class="text-nav" href="/exploration">Exploration de donnée</a></div>
-            </li>
-        </ul>
-    </nav>
-    <div class="account-part">
-        <div class="account-icon"></div>
-        <p class="account-text">Invité</p>
-    </div>
-</aside>
-<div class="content-wrap">
-     {% block content %} {% endblock %}
-</div>
 </body>
+
 </html>
