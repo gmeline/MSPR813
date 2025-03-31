@@ -2,14 +2,149 @@
     margin: 0;
     padding: 0;
     box-sizing: content-box;
-
+    font-size: 1.1rem;
+    font-family: "Funnel Display", sans-serif;
 }
 
 body {
-    display: flex;
     height: 100vh;
+    background-color: #f2f2f2;
 }
+
 aside {
-    background-color: orange;
-    width: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: #161619;
+    width: 17%;
+    position: fixed;
+    top: 1%;
+    bottom: 1%;
+    left: 1%;
+    box-shadow: 1px 50px 50px rgba(0, 0, 0, 0.2);
+    border-radius: 0.8rem;
+}
+
+.content-wrap{
+    width: 80%;
+    height: 800000px;
+    margin-left: auto;
+}
+
+li{
+    list-style-type: none;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.text-nav,.account-text,.application-text{
+    text-decoration: none;
+}
+
+.application-text, .account-text{
+    color: white;
+}
+
+.text-nav{
+    color: #62666c;
+}
+
+.application-text{
+    font-size: 1.2rem;
+}
+
+.application-icon{
+    background-image: url(/static/images/application.png);
+}
+
+.account-icon{
+    background-image: url(/static/images/account.png);
+}
+
+.home-icon{
+    background-image: url(/static/images/acceuil.png);
+    filter: brightness(0) saturate(100%) invert(39%) sepia(5%) saturate(311%) hue-rotate(174deg) brightness(92%) contrast(88%);
+}
+
+.machine-learning-icon{
+    background-image: url(/static/images/machine-learning.png);
+    filter: brightness(0) saturate(100%) invert(39%) sepia(5%) saturate(311%) hue-rotate(174deg) brightness(92%) contrast(88%);
+}
+
+.exploration-icon{
+    background-image: url(/static/images/exploration.png);
+    filter: brightness(0) saturate(100%) invert(39%) sepia(5%) saturate(311%) hue-rotate(174deg) brightness(92%) contrast(88%);
+}
+
+.dashboard-icon{
+    background-image: url(/static/images/dashboard.png);
+    filter: brightness(0) saturate(100%) invert(39%) sepia(5%) saturate(311%) hue-rotate(174deg) brightness(92%) contrast(88%);
+}
+
+.application-icon{
+    background-size: 100%;
+    width: 65px;
+    height: 65px;
+    background-repeat: no-repeat;
+}
+
+.account-icon, .home-icon, .machine-learning-icon, .exploration-icon, .dashboard-icon{
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+}
+
+.application-part{
+    display: flex;
+    align-items: center;
+    gap: 7%;
+    background-color: #1f1f22;
+    border-radius: 0.8rem 0.8rem 0rem 0rem;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-bottom: 5%;
+}
+
+.home-part,.machine-learning-part,.dashboard-part,.exploration-part{
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    border-radius: 0.8rem;
+    padding: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 30px;
+}
+
+.account-part {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    background-color: #1f1f22;
+    border-radius: 0rem 0rem 0.8rem 0.8rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+
+.home-part:hover, .machine-learning-part:hover, .dashboard-part:hover, .exploration-part:hover{
+    background-color: #1f3027;
+}
+
+.home-part:hover .text-nav, .machine-learning-part:hover .text-nav, .dashboard-part:hover .text-nav, .exploration-part:hover .text-nav, .account-icon:hover, .home-icon:hover, .machine-learning-icon:hover, .exploration-icon:hover, .dashboard-icon:hover{
+    color: #18be61;
+}
+
+.home-part:hover .home-icon, .machine-learning-part:hover .machine-learning-icon, .dashboard-part:hover .dashboard-icon, .exploration-part:hover .exploration-icon {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(90%) saturate(640%) hue-rotate(94deg) brightness(95%) contrast(93%);
+}
+
+.wrapper-menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }

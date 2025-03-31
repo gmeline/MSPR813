@@ -5,19 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<aside>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/machineLearning">Machine</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-        </ul>
-    </nav>
-</aside>
-<div>
-     {% block content %} {% endblock %}
-</div>
+    <aside>
+        <div class="application-part">
+            <div class="application-icon"></div>
+            <p class="application-text">Prédicta</p>
+        </div>
+        <div class="wrapper-menu">
+            <nav>
+                <ul>
+
+                    <li class="home-part">
+                        <div class="home-icon"></div>
+                        <div><a class="text-nav" href="/">Accueil</a></div>
+                    </li>
+                    <li class="machine-learning-part">
+                        <div class="machine-learning-icon"></div>
+                        <div><a class="text-nav" href="/machineLearning">Machine Learning</a></div>
+                    </li>
+                    <li class="dashboard-part">
+                        <div class="dashboard-icon"></div>
+                        <div><a class="text-nav" href="/dashboard">Dashboard</a></div>
+                    </li>
+                    <li class="exploration-part">
+                        <div class="exploration-icon"></div>
+                        <div><a class="text-nav" href="/exploration">Exploration de donnée</a></div>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="account-part">
+                <div class="account-icon"></div>
+                <p class="account-text">Invité</p>
+            </div>
+        </div>
+    </aside>
+    <div class="content-wrap">
+        {% block content %} {% endblock %}
+    </div>
 </body>
 </html>
