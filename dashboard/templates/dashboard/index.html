@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1> JE SUIS UN DASHBOARD</h1>
+   <img src="data:image/png;base64,{{ criminally }}" alt="Sales Graph">
+{% for crime in criminally %}
+  <span>{{ crime }}</span>
+{% endfor %}
 {% endblock %}

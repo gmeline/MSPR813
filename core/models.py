@@ -1,35 +1,27 @@
 from django.db import models
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-    parent = models.ForeignKey(
-        'self', 
-        on_delete=models.SET_NULL,  
-        null=True,  
-        blank=True  
+class CriminalityPerCir(models.Model):
+    # Django adds an 'id' AutoField primary key automatically
+    code_circonscription = models.TextField(
+        null=True, blank=True, db_column='code_circonscription',
+        help_text="Code identifying the circonscription"
+    )
+    annee = models.IntegerField(
+        null=True, blank=True, db_column='annee',
+        help_text="Year of the data"
+    )
+    nombre = models.IntegerField(
+        null=True, blank=True, db_column='nombre',
+        help_text="Number of criminal incidents"
+    )
+    population = models.IntegerField(
+        null=True, blank=True, db_column='population',
+        help_text="Population of the circonscription for that year"
+    )
+    taux_pour_mille = models.FloatField(
+        null=True, blank=True, db_column='taux_pour_mille',
+        help_text="Criminality rate per thousand inhabitants"
     )
 
-    def __str__(self):
-        return self.name
-
-class Article(models.Model):
-    title = models.CharField(max_length=255)
-    content = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='articles') 
-
-    def __str__(self):
-        return self.title
-    
-class GeneratedImage(models.Model):
-    id = models.AutoField(primary_key=True)
-    image_url = models.URLField(default="https://github.com/d-perreaux/OCR_initiation_machine_learning/blob/main/exo_01_regression_lineaire_simple/toto.png?raw=true")
-    date_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Image {self.id} générée le {self.date_created}"
-
-class ElectionDate(models.Model):
-    date = models.DateField()
-
-    def __str__(self):
-        return str(self.date)
+    class Meta:
+        db_table = 'criminality_per_cir'

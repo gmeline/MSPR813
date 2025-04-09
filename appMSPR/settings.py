@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "machineLearning",
     "rest_framework",
     "matplotlib",
+    "core"
 ]
 
 MIDDLEWARE = [
@@ -80,12 +81,18 @@ WSGI_APPLICATION = "appMSPR.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'DATAWAREHOSE',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',  # Use this instead of 'localhost'
+        'PORT': '3307',  # Use the mapped port
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -134,4 +141,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "core/mspr-454808-baf9c7d409e4.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "core/mspr-454808-baf9c7d409e4.json"
