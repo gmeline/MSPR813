@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "exploration",
     "rest_framework",
     "matplotlib",
+    "core",
 ]
 
 MIDDLEWARE = [

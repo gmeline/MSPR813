@@ -1,9 +1,7 @@
 from django import forms
 from .models import Category
 from .models import Article
-from .models import ElectionDate
-from pathlib import Path
-import csv
+import pandas as pd
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -23,9 +21,16 @@ class ArticleForm(forms.ModelForm):
         fields = ['title', 'content', 'category']
 
 class ElectionFilterForm(forms.Form):
-    date_field = forms.DateField(
-        widget=forms.DateInput(attrs={
-            'type': 'date', 
-            'class': 'form-control' 
-        })
+    # Récupérer les départements uniques dans le CSV
+    df = pd.read_csv('core/data/leg_1993.csv', sep=',')
+    departements = df['libelle_du_departement'].unique()
+    department_choices = [(dep, dep) for dep in departements]
+    department_field = forms.ChoiceField(
+        choices=[('', 'Sélectionner un département')] + department_choices,
+        required=False,  # Champ optionnel, ou tu peux le rendre obligatoire si nécessaire
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
+
+
+class ImportCSVForm(forms.Form):
+    csv_file = forms.FileField()

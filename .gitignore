@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 venv
 .vscode
 mspr-454808-baf9c7d409e4.json
 **/__pycache__
+=======
+mspr-454808-baf9c7d409e4.json
+
+db.sqlite3
+>>>>>>> 272e2b3 (feat(exploration): mise en place de tableau via csv)

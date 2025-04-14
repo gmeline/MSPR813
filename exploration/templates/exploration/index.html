@@ -1,7 +1,61 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<h1>
-    Salut, vous êtes sur la page de l'exploration !
-</h1>
+<h1>Salut, vous êtes sur la page de l'exploration !</h1>
+
+<!-- Formulaire afin de filtrer par départements -->
+<form method="GET">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+</form>
+<!-- A mettre dans un petit "i" d'information
+<p>SOC = Socialiste</p>
+<p>DVG = Divers gauche</p>
+<p>DIV = Divers </p>
+<p>UMP = Union pour un mouvement populaire</p>
+<p>FRN = Front Rassemblement National</p>
+<p>UDF = Union pour la démocratique française</p>
+<p>PRG = Partie radicale de gauche</p>-->
+
+
+<!-- Tableau des données filtrées -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Code du département</th>
+            <th>Libelle du département</th>
+            <th>code de la circonscription</th>
+            <th>inscrits</th>
+            <th>volants</th>
+            <th>exprimées</th>
+            <th>blancs et nuls</th>
+            <th>nuance</th>
+            <th>voix</th>
+            <th>nuance 2</th>
+            <th>voix 2</th>
+            <th>nuance 3</th>
+            <th>voix 3</th>
+            <th>annee</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.0 }}</td> 
+                <td>{{ row.1 }}</td>
+                <td>{{ row.2 }}</td>
+                <td>{{ row.3 }}</td>
+                <td>{{ row.4 }}</td>
+                <td>{{ row.5 }}</td>
+                <td>{{ row.6 }}</td>
+                <td>{{ row.7 }}</td>
+                <td>{{ row.8 }}</td>
+                <td>{{ row.9 }}</td>
+                <td>{{ row.10 }}</td>
+                <td>{{ row.11 }}</td>
+                <td>{{ row.12 }}</td>
+                <td>{{ row.13 }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
