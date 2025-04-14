@@ -1,54 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
-    {% block css %}
-{% endblock css %}
-</head>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    {% block css %} {% endblock css %}
+  </head>
 
-<body>
+  <body>
     <aside>
-        <div class="application-part">
-            <div class="application-icon"></div>
-            <p class="application-text">Prédicta</p>
+      <div class="application-part">
+        <div class="application-icon"></div>
+        <p class="application-text">Prédicta</p>
+      </div>
+      <div class="wrapper-menu">
+        <nav>
+          <ul>
+            <li class="home-part">
+              <div class="home-icon"></div>
+              <div><a class="text-nav" href="/">Accueil</a></div>
+            </li>
+            <li class="machine-learning-part">
+              <div class="machine-learning-icon"></div>
+              <div>
+                <a class="text-nav" href="/machineLearning">Machine Learning</a>
+              </div>
+            </li>
+            <li class="dashboard-part">
+              <div class="dashboard-icon"></div>
+              <div><a class="text-nav" href="/dashboard">Dashboard</a></div>
+            </li>
+            <li class="exploration-part">
+              <div class="exploration-icon"></div>
+              <div>
+                <a class="text-nav" href="/exploration"
+                  >Exploration de donnée</a
+                >
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <div class="account-part">
+          <div class="account-icon"></div>
+          <p class="account-text">Invité</p>
         </div>
-        <div class="wrapper-menu">
-            <nav>
-                <ul>
-
-                    <li class="home-part">
-                        <div class="home-icon"></div>
-                        <div><a class="text-nav" href="/">Accueil</a></div>
-                    </li>
-                    <li class="machine-learning-part">
-                        <div class="machine-learning-icon"></div>
-                        <div><a class="text-nav" href="/machineLearning">Machine Learning</a></div>
-                    </li>
-                    <li class="dashboard-part">
-                        <div class="dashboard-icon"></div>
-                        <div><a class="text-nav" href="/dashboard">Dashboard</a></div>
-                    </li>
-                    <li class="exploration-part">
-                        <div class="exploration-icon"></div>
-                        <div><a class="text-nav" href="/exploration">Exploration de donnée</a></div>
-                    </li>
-
-                </ul>
-            </nav>
-            <div class="account-part">
-                <div class="account-icon"></div>
-                <p class="account-text">Invité</p>
-            </div>
-        </div>
+      </div>
     </aside>
-    <div class="content-wrap">
-        {% block content %} {% endblock %}
-    </div>
-</body>
+    <div class="content-wrap">{% block content %} {% endblock %}</div>
+    <script>
+      const normalizePath = (path) => {
+        return path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
+      };
+
+      const currentPath = normalizePath(window.location.pathname);
+
+      const menuLinks = document.querySelectorAll("aside nav ul li a");
+
+      menuLinks.forEach((link) => {
+        const linkPath = normalizePath(link.getAttribute("href"));
+
+        if ((currentPath === "" || currentPath === "/") && linkPath === "/") {
+          link.classList.add("active");
+          const parent = link.closest(
+            ".home-part, .machine-learning-part, .dashboard-part, .exploration-part"
+          );
+          if (parent) parent.classList.add("active-item");
+        } else if (linkPath !== "/" && linkPath === currentPath) {
+          link.classList.add("active");
+          const parent = link.closest(
+            ".home-part, .machine-learning-part, .dashboard-part, .exploration-part"
+          );
+          if (parent) parent.classList.add("active-item");
+        }
+      });
+    </script>
+  </body>
 </html>
