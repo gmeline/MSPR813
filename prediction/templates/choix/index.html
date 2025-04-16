@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/prediction/choix/style.css">
+{% endblock %}
+{% block content %}
+<body>
+    <div class="main-container">
+        <h1 class="title">Choix du modèle</h1>
+        <div class="cards">
+            <div class="card">
+                <h2 class="title2">Modèle 1</h2>
+                <p>Un modèle qui classe les propositions politiques en trois grandes familles.</p>
+                <div class="btn">
+                    <a href=""><span>J'essaye ce modèle</span></a>
+                  </div>
+            </div>
+            <div class="card">
+                <h2 class="title2">Modèle 2</h2>
+                <p>Ce modèle ajoute de la nuances entre les sensibilités politiques.</p>
+                <div class="btn">
+                    <a href=""><span>J'essaye ce modèle</span></a>
+                  </div>
+            </div>
+            <div class="card">
+                <h2 class="title2">Modèle 3</h2>
+                <p>Un modèle complet qui permet une lecture plus fine du spectre politique.<br></p>
+                <div class="btn">
+                    <a href=""><span>J'essaye ce modèle</span></a>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,7 +1,43 @@
 
 {% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/prediction/prediction/style.css">
+{% endblock %}
 {% block content %}
-<h1>
-    HELLO COUOU LANDIND
-</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <ul>
+        <li>
+            <label for="label_param1">Précédent</label>
+            <input type="text" id="param1" name="precedent">
+        </li>
+        <li>
+            <label for="label_param2">Taux pour mille</label>
+            <input type="text" id="param2" name="tauxpourmille">
+        </li>
+        <li>
+            <label for="label_param3">Taux de chomage</label>
+            <input type="text" id="param3" name="tauxdechomage">
+        </li>
+        <li>
+            <label for="label_param4">Densité</label>
+            <input type="text" id="param4" name="densite">
+        </li>
+        <li>
+            <label for="label_param5">Instabilité centre extremes</label>
+            <input type="text" id="param5" name="instabilitecentreextreme">
+        </li>
+        <li>
+            <label for="label_param6">Poids nuance centre extremes</label>
+            <input type="text" id="param6" name="poidsnuancecentreextremes">
+        </li>
+        <li>
+            <label for="label_param7">Désir changement centre extremes</label>
+            <input type="text" id="param7" name="desirchangementcentreextremes">
+        </li>
+    </ul>
+    <button type="submit">Prédire</button>
+</form>
+
+<h2>Résultat de la prédiction</h2> : {{prediction}}
 {% endblock %}
