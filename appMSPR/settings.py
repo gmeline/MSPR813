@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "dashboard",
-    "landing",
+    "prediction",
     "machineLearning",
     "rest_framework",
     "matplotlib",
