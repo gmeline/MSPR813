@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/dashboard/style.css">
+{% endblock %}
+{% block content %}
+<h1> JE SUIS UN DASHBOARD</h1>
+    <nav CLASS="nav-wrapper">
+        <ul class="tabs-container">
+            <li><a href="/dashboard" class="tab-link active">Travail</a></li>
+            <li><a href="/dashboard/criminality" class="tab-link">Criminalité</a></li>
+            <li><a href="/dashboard/elections" class="tab-link">Eléctions</a></li>
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        {% block stats %} {% endblock %}
+    </div>
+{% endblock %}
