@@ -1,61 +1,90 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Salut, vous êtes sur la page de l'exploration !</h1>
 
 <!-- Formulaire afin de filtrer par départements -->
 <form method="GET">
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Filtrer</button>
 </form>
-<!-- A mettre dans un petit "i" d'information
-<p>SOC = Socialiste</p>
-<p>DVG = Divers gauche</p>
-<p>DIV = Divers </p>
-<p>UMP = Union pour un mouvement populaire</p>
-<p>FRN = Front Rassemblement National</p>
-<p>UDF = Union pour la démocratique française</p>
-<p>PRG = Partie radicale de gauche</p>-->
-
 
 <!-- Tableau des données filtrées -->
 <table border="1">
     <thead>
         <tr>
-            <th>Code du département</th>
-            <th>Libelle du département</th>
-            <th>code de la circonscription</th>
-            <th>inscrits</th>
-            <th>volants</th>
-            <th>exprimées</th>
-            <th>blancs et nuls</th>
-            <th>nuance</th>
-            <th>voix</th>
-            <th>nuance 2</th>
-            <th>voix 2</th>
-            <th>nuance 3</th>
-            <th>voix 3</th>
-            <th>annee</th>
+            {% if show_code_du_departement %}<th>Code du département</th>{% endif %}
+            {% if show_libelle_du_departement %}<th>Libellé du département</th>{% endif %}
+            {% if show_code_de_la_circonscription %}<th>Code de la circonscription</th>{% endif %}
+            {% if show_inscrits %}<th>Inscrits</th>{% endif %}
+            {% if show_volants %}<th>Votants</th>{% endif %}
+            {% if show_exprimees %}<th>Exprimés</th>{% endif %}
+            {% if show_blancs_et_nuls %}<th>Blancs et nuls</th>{% endif %}
+            {% if show_nuance %}<th>Nuance</th>{% endif %}
+            {% if show_voix %}<th>Voix</th>{% endif %}
+            {% if show_nuance_2 %}<th>Nuance 2</th>{% endif %}
+            {% if show_voix_2 %}<th>Voix 2</th>{% endif %}
+            {% if show_nuance_3 %}<th>Nuance 3</th>{% endif %}
+            {% if show_voix_3 %}<th>Voix 3</th>{% endif %}
+            {% if show_annee %}<th>Année</th>{% endif %}
+            {% if show_gagnant %}<th>Gagnant</th>{% endif %}
+            {% if show_voix_gagnant %}<th>Voix gagnant</th>{% endif %}
+            {% if show_gagnant_precedent %}<th>Gagnant précédent</th>{% endif %}
+            {% if show_voix_gagnant_precedent %}<th>Voix gagnant précédent</th>{% endif %}
+            {% if show_encodage_sans_centre_gagnant %}<th>Encodage sans centre gagnant</th>{% endif %}
+            {% if show_encodage_avec_centre_gagnant %}<th>Encodage avec centre gagnant</th>{% endif %}
+            {% if show_encodage_centre_extremes_gagnant %}<th>Encodage centre extrêmes gagnant</th>{% endif %}
+            {% if show_encodage_sans_centre_gagnant_precedent %}<th>Encodage sans centre gagnant précédent</th>{% endif %}
+            {% if show_encodage_avec_centre_gagnant_precedent %}<th>Encodage avec centre gagnant précédent</th>{% endif %}
+            {% if show_encodage_centre_extremes_gagnant_precedent %}<th>Encodage centre extrêmes gagnant précédent</th>{% endif %}
+            {% if show_instabilite_sans_centre %}<th>Instabilité sans centre</th>{% endif %}
+            {% if show_poids_nuance_sans_centre %}<th>Poids nuance sans centre</th>{% endif %}
+            {% if show_desir_changement_sans_centre %}<th>Désir de changement sans centre</th>{% endif %}
+            {% if show_instabilite_avec_centre %}<th>Instabilité avec centre</th>{% endif %}
+            {% if show_poids_nuance_avec_centre %}<th>Poids nuance avec centre</th>{% endif %}
+            {% if show_desir_changement_avec_centre %}<th>Désir de changement avec centre</th>{% endif %}
+            {% if show_instabilite_centre_extremes %}<th>Instabilité centre/extrêmes</th>{% endif %}
+            {% if show_poids_nuance_centre_extremes %}<th>Poids nuance centre/extrêmes</th>{% endif %}
+            {% if show_desir_changement_centre_extremes %}<th>Désir changement centre/extrêmes</th>{% endif %}
         </tr>
     </thead>
     <tbody>
         {% for row in data %}
-            <tr>
-                <td>{{ row.0 }}</td> 
-                <td>{{ row.1 }}</td>
-                <td>{{ row.2 }}</td>
-                <td>{{ row.3 }}</td>
-                <td>{{ row.4 }}</td>
-                <td>{{ row.5 }}</td>
-                <td>{{ row.6 }}</td>
-                <td>{{ row.7 }}</td>
-                <td>{{ row.8 }}</td>
-                <td>{{ row.9 }}</td>
-                <td>{{ row.10 }}</td>
-                <td>{{ row.11 }}</td>
-                <td>{{ row.12 }}</td>
-                <td>{{ row.13 }}</td>
-            </tr>
+        <tr>
+            {% if show_code_du_departement %}<td>{{ row.0 }}</td>{% endif %}
+            {% if show_libelle_du_departement %}<td>{{ row.1 }}</td>{% endif %}
+            {% if show_code_de_la_circonscription %}<td>{{ row.2 }}</td>{% endif %}
+            {% if show_inscrits %}<td>{{ row.3 }}</td>{% endif %}
+            {% if show_volants %}<td>{{ row.4 }}</td>{% endif %}
+            {% if show_exprimees %}<td>{{ row.5 }}</td>{% endif %}
+            {% if show_blancs_et_nuls %}<td>{{ row.6 }}</td>{% endif %}
+            {% if show_nuance %}<td>{{ row.7 }}</td>{% endif %}
+            {% if show_voix %}<td>{{ row.8 }}</td>{% endif %}
+            {% if show_nuance_2 %}<td>{{ row.9 }}</td>{% endif %}
+            {% if show_voix_2 %}<td>{{ row.10 }}</td>{% endif %}
+            {% if show_nuance_3 %}<td>{{ row.11 }}</td>{% endif %}
+            {% if show_voix_3 %}<td>{{ row.12 }}</td>{% endif %}
+            {% if show_annee %}<td>{{ row.13 }}</td>{% endif %}
+            {% if show_gagnant %}<td>{{ row.14 }}</td>{% endif %}
+            {% if show_voix_gagnant %}<td>{{ row.15 }}</td>{% endif %}
+            {% if show_gagnant_precedent %}<td>{{ row.16 }}</td>{% endif %}
+            {% if show_voix_gagnant_precedent %}<td>{{ row.17 }}</td>{% endif %}
+            {% if show_encodage_sans_centre_gagnant %}<td>{{ row.18 }}</td>{% endif %}
+            {% if show_encodage_avec_centre_gagnant %}<td>{{ row.19 }}</td>{% endif %}
+            {% if show_encodage_centre_extremes_gagnant %}<td>{{ row.20 }}</td>{% endif %}
+            {% if show_encodage_sans_centre_gagnant_precedent %}<td>{{ row.21 }}</td>{% endif %}
+            {% if show_encodage_avec_centre_gagnant_precedent %}<td>{{ row.22 }}</td>{% endif %}
+            {% if show_encodage_centre_extremes_gagnant_precedent %}<td>{{ row.23 }}</td>{% endif %}
+            {% if show_instabilite_sans_centre %}<td>{{ row.24 }}</td>{% endif %}
+            {% if show_poids_nuance_sans_centre %}<td>{{ row.25 }}</td>{% endif %}
+            {% if show_desir_changement_sans_centre %}<td>{{ row.26 }}</td>{% endif %}
+            {% if show_instabilite_avec_centre %}<td>{{ row.27 }}</td>{% endif %}
+            {% if show_poids_nuance_avec_centre %}<td>{{ row.28 }}</td>{% endif %}
+            {% if show_desir_changement_avec_centre %}<td>{{ row.29 }}</td>{% endif %}
+            {% if show_instabilite_centre_extremes %}<td>{{ row.30 }}</td>{% endif %}
+            {% if show_poids_nuance_centre_extremes %}<td>{{ row.31 }}</td>{% endif %}
+            {% if show_desir_changement_centre_extremes %}<td>{{ row.32 }}</td>{% endif %}
+        </tr>
         {% endfor %}
     </tbody>
+    
 </table>
 {% endblock %}
