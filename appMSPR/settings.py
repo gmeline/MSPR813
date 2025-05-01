@@ -82,11 +82,16 @@ WSGI_APPLICATION = "appMSPR.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # Utiliser MySQL
+        'NAME': 'politique_bdd',                   # Nom de ta base (ce que tu as créé)
+        'USER': 'root',                        # Utilisateur MySQL
+        'PASSWORD': 'MimiMoy-971',        # Mot de passe root MySQL
+        'HOST': 'localhost',                   # Ou l'adresse IP du serveur MySQL si distant
+        'PORT': '3306',                        # Port MySQL par défaut
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

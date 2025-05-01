@@ -1,3 +1,4 @@
+# views.py
 from django.shortcuts import render
 from .forms import ElectionFilterForm
 from .models import ResultatElection
@@ -11,116 +12,84 @@ import pandas as pd
 
 
 def index(request):
-    csv_path = os.path.join(settings.BASE_DIR, 'exploration', 'data', 'leg_1993.csv')
+    queryset = ResultatElection.objects.all()
     
-    if not os.path.exists(csv_path):
-        return render(request, 'exploration/index.html', {
-            'error': 'Le fichier CSV est introuvable.',
-        })
-    
-    df = pd.read_csv(csv_path, sep=',')
-    departements = df['libelle_du_departement'].unique()
-    nuances = df['nuance'].unique()
     form = ElectionFilterForm(request.GET)
+    
+    departements = queryset.values_list('libelle_du_departement', flat=True).distinct()
 
     if form.is_valid():
         selected_department = form.cleaned_data.get('department_field')
-        selected_nuance = form.cleaned_data.get('nuance_field')
 
         if selected_department:
-            df = df[df['libelle_du_departement'] == selected_department]
-        
-        if selected_nuance:
-            df = df[df['nuance'] == selected_nuance]
+            queryset = queryset.filter(libelle_du_departement=selected_department)
 
-        show_code_du_departement = form.cleaned_data.get('show_code_du_departement')
-        show_libelle_du_departement = form.cleaned_data.get('show_libelle_du_departement')
-        show_code_de_la_circonscription = form.cleaned_data.get('show_code_de_la_circonscription')
-        show_inscrits = form.cleaned_data.get('show_inscrits')
-        show_volants = form.cleaned_data.get('show_volants')
-        show_exprimees = form.cleaned_data.get('show_exprimees')
-        show_blancs_et_nuls = form.cleaned_data.get('show_blancs_et_nuls')
-        show_nuance = form.cleaned_data.get('show_nuance')
-        show_voix = form.cleaned_data.get('show_voix')
-        show_nuance_2 = form.cleaned_data.get('show_nuance_2')
-        show_voix_2 = form.cleaned_data.get('show_voix_2')
-        show_nuance_3 = form.cleaned_data.get('show_nuance_3')
-        show_voix_3 = form.cleaned_data.get('show_voix_3')
-        show_annee = form.cleaned_data.get('show_annee')
-        show_gagnant = form.cleaned_data.get('show_gagnant')
-        show_voix_gagnant = form.cleaned_data.get('show_voix_gagnant')
-        show_gagnant_precedent = form.cleaned_data.get('show_gagnant_precedent')
-        show_voix_gagnant_precedent = form.cleaned_data.get('show_voix_gagnant_precedent')
-        show_encodage_sans_centre_gagnant = form.cleaned_data.get('show_encodage_sans_centre_gagnant')
-        show_encodage_avec_centre_gagnant = form.cleaned_data.get('show_encodage_avec_centre_gagnant')
-        show_encodage_centre_extremes_gagnant = form.cleaned_data.get('show_encodage_centre_extremes_gagnant')
-        show_encodage_sans_centre_gagnant_precedent = form.cleaned_data.get('show_encodage_sans_centre_gagnant_precedent')
-        show_encodage_avec_centre_gagnant_precedent = form.cleaned_data.get('show_encodage_avec_centre_gagnant_precedent')
-        show_encodage_centre_extremes_gagnant_precedent = form.cleaned_data.get('show_encodage_centre_extremes_gagnant_precedent')
-        show_instabilite_sans_centre = form.cleaned_data.get('show_instabilite_sans_centre')
-        show_poids_nuance_sans_centre = form.cleaned_data.get('show_poids_nuance_sans_centre')
-        show_desir_changement_sans_centre = form.cleaned_data.get('show_desir_changement_sans_centre')
-        show_instabilite_avec_centre = form.cleaned_data.get('show_instabilite_avec_centre')
-        show_poids_nuance_avec_centre = form.cleaned_data.get('show_poids_nuance_avec_centre')
-        show_desir_changement_avec_centre = form.cleaned_data.get('show_desir_changement_avec_centre')
-        show_instabilite_centre_extremes = form.cleaned_data.get('show_instabilite_centre_extremes')
-        show_poids_nuance_centre_extremes = form.cleaned_data.get('show_poids_nuance_centre_extremes')
-        show_desir_changement_centre_extremes = form.cleaned_data.get('show_desir_changement_centre_extremes')
+    columns_to_display = []
+    if form.cleaned_data.get('show_code_du_departement'):
+        columns_to_display.append('code_du_departement')
+    if form.cleaned_data.get('show_libelle_du_departement'):
+        columns_to_display.append('libelle_du_departement')
+    if form.cleaned_data.get('show_code_de_la_circonscription'):
+        columns_to_display.append('code_de_la_circonscription')
+    if form.cleaned_data.get('show_inscrits'):
+        columns_to_display.append('inscrits')
+    if form.cleaned_data.get('show_votants'):
+        columns_to_display.append('votants')
+    if form.cleaned_data.get('show_exprimes'):
+        columns_to_display.append('exprimes')
+    if form.cleaned_data.get('show_blancs_et_nuls'):
+        columns_to_display.append('blancs_et_nuls')
+    if form.cleaned_data.get('show_nuance'):
+        columns_to_display.append('nuance')
+    if form.cleaned_data.get('show_voix'):
+        columns_to_display.append('voix')
+    if form.cleaned_data.get('show_nuance_2'):
+        columns_to_display.append('nuance_2')
+    if form.cleaned_data.get('show_nuance_3'):
+        columns_to_display.append('nuance_3')
+    if form.cleaned_data.get('show_voix_2'):
+        columns_to_display.append('voix_2')
+    if form.cleaned_data.get('show_voix_3'):
+        columns_to_display.append('voix_3')
+    if form.cleaned_data.get('show_annee'):
+        columns_to_display.append('annee')
+    if form.cleaned_data.get('show_gagnant'):
+        columns_to_display.append('gagnant')
+    if form.cleaned_data.get('show_voix_gagnant'):
+        columns_to_display.append('voix_gagnant')
+    if form.cleaned_data.get('show_gagnant_precedent'):
+        columns_to_display.append('gagnant_precedent')
+    if form.cleaned_data.get('show_voix_gagnant_precedent'):
+        columns_to_display.append('voix_gagnant_precedent')
+    if form.cleaned_data.get('show_encodage_sans_centre_gagnant'):
+        columns_to_display.append('encodage_sans_centre_gagnant')
+    if form.cleaned_data.get('show_encodage_avec_centre_gagnant'):
+        columns_to_display.append('encodage_avec_centre_gagnant')
+    if form.cleaned_data.get('show_encodage_centre_extremes_gagnant'):
+        columns_to_display.append('encodage_centre_extremes_gagnant')
+    if form.cleaned_data.get('show_encodage_sans_centre_gagnant_precedent'):
+        columns_to_display.append('encodage_sans_centre_gagnant_precedent')
+    if form.cleaned_data.get('show_encodage_avec_centre_gagnant_precedent'):
+        columns_to_display.append('encodage_avec_centre_gagnant_precedent')
+    if form.cleaned_data.get('show_encodage_centre_extremes_gagnant_precedent'):
+        columns_to_display.append('encodage_centre_extremes_gagnant_precedent')
 
-    data = df.values.tolist() if not df.empty else []
+    if not columns_to_display:
+        columns_to_display = [
+            'code_du_departement', 'libelle_du_departement', 'code_de_la_circonscription',
+            'inscrits', 'votants', 'exprimes', 'blancs_et_nuls', 'nuance', 'voix', 'nuance_2',
+            'nuance_3', 'voix_2', 'voix_3', 'annee', 'gagnant', 'voix_gagnant', 'gagnant_precedent',
+            'voix_gagnant_precedent', 'encodage_sans_centre_gagnant', 'encodage_avec_centre_gagnant',
+            'encodage_centre_extremes_gagnant', 'encodage_sans_centre_gagnant_precedent',
+            'encodage_avec_centre_gagnant_precedent', 'encodage_centre_extremes_gagnant_precedent'
+        ]
 
-    if not df.empty:
-        if 'voix' not in df.columns:
-            return render(request, 'exploration/index.html', {
-                'error': 'La colonne "voix" est manquante dans le fichier CSV.',
-            })
-        
-        df['voix'] = pd.to_numeric(df['voix'], errors='coerce')
-        df = df.dropna(subset=['voix'])
-        return render(request, 'exploration/index.html', {
-            'form': form,
-            'data': data,
-            'show_code_du_departement': show_code_du_departement,
-            'show_libelle_du_departement': show_libelle_du_departement,
-            'show_code_de_la_circonscription': show_code_de_la_circonscription,
-            'show_inscrits': show_inscrits,
-            'show_volants': show_volants,
-            'show_exprimees': show_exprimees,
-            'show_blancs_et_nuls': show_blancs_et_nuls,
-            'show_nuance': show_nuance,
-            'show_voix': show_voix,
-            'show_nuance_2': show_nuance_2,
-            'show_voix_2': show_voix_2,
-            'show_nuance_3': show_nuance_3,
-            'show_voix_3': show_voix_3,
-            'show_annee': show_annee,
-            'show_gagnant': show_gagnant,
-            'show_voix_gagnant': show_voix_gagnant,
-            'show_gagnant_precedent': show_gagnant_precedent,
-            'show_voix_gagnant_precedent': show_voix_gagnant_precedent,
-            'show_encodage_sans_centre_gagnant': show_encodage_sans_centre_gagnant,
-            'show_encodage_avec_centre_gagnant': show_encodage_avec_centre_gagnant,
-            'show_encodage_centre_extremes_gagnant': show_encodage_centre_extremes_gagnant,
-            'show_encodage_sans_centre_gagnant_precedent': show_encodage_sans_centre_gagnant_precedent,
-            'show_encodage_avec_centre_gagnant_precedent': show_encodage_avec_centre_gagnant_precedent,
-            'show_encodage_centre_extremes_gagnant_precedent': show_encodage_centre_extremes_gagnant_precedent,
-            'show_instabilite_sans_centre': show_instabilite_sans_centre,
-            'show_poids_nuance_sans_centre': show_poids_nuance_sans_centre,
-            'show_desir_changement_sans_centre': show_desir_changement_sans_centre,
-            'show_instabilite_avec_centre': show_instabilite_avec_centre,
-            'show_poids_nuance_avec_centre': show_poids_nuance_avec_centre,
-            'show_desir_changement_avec_centre': show_desir_changement_avec_centre,
-            'show_instabilite_centre_extremes': show_instabilite_centre_extremes,
-            'show_poids_nuance_centre_extremes': show_poids_nuance_centre_extremes,
-            'show_desir_changement_centre_extremes': show_desir_changement_centre_extremes,
-            'departements': departements,
-            'nuances': nuances,
-            'graph_image_url': '/static/images/tableau.png',
-        })
+    data = queryset.values(*columns_to_display)
 
-    return render(request, 'exploration/index.html', {
+    context = {
         'form': form,
-        'data': data,
+        'data': list(data),
         'departements': departements,
-        'nuances': nuances,
-    })
+    }
+
+    return render(request, 'exploration/index.html', context)

@@ -2,8 +2,6 @@ from django import forms
 import pandas as pd
 
 class ElectionFilterForm(forms.Form):
-    # Filtrer par départements
-    df = pd.read_csv('core/data/leg_1993.csv', sep=',')
     departements = df['libelle_du_departement'].unique()
     department_choices = [(dep, dep) for dep in departements]
     department_field = forms.ChoiceField(
@@ -11,16 +9,7 @@ class ElectionFilterForm(forms.Form):
         required=False,
         widget=forms.Select(attrs={'class': 'form-control'})
     )
-    # Filtrer par nuance
-    nuances = df['nuance'].unique()
-    nuance_choices = [(nuan, nuan) for nuan in nuances]
-    nuance_field = forms.ChoiceField(
-        choices=[('', 'Sélectionner une nuance')] + nuance_choices,
-        required=False,
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
 
-    # Checkbox pour affichage de colonnes
     show_code_du_departement = forms.BooleanField(required=False, initial=False)
     show_libelle_du_departement = forms.BooleanField(required=False, initial=True)
     show_code_de_la_circonscription = forms.BooleanField(required=False, initial=True)

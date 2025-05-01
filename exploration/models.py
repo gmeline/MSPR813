@@ -34,6 +34,8 @@ class ResultatElection(models.Model):
     instabilite_centre_extremes = models.IntegerField()
     poids_nuance_centre_extremes = models.IntegerField()
     desir_changement_centre_extremes = models.IntegerField()
+    class Meta:
+        db_table = 'legislative_per_cir'
 
     def __str__(self):
         return f"{self.libelle_du_departement} - {self.code_de_la_circonscription}"
