@@ -2,6 +2,8 @@ from django import forms
 import pandas as pd
 
 class ElectionFilterForm(forms.Form):
+    # Filtrer par départements
+    df = pd.read_csv('core/data/leg_1993.csv', sep=',')
     departements = df['libelle_du_departement'].unique()
     department_choices = [(dep, dep) for dep in departements]
     department_field = forms.ChoiceField(

@@ -1,4 +1,3 @@
-# views.py
 from django.shortcuts import render
 from .forms import ElectionFilterForm
 from .models import ResultatElection
