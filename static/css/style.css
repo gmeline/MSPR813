@@ -28,9 +28,10 @@ aside {
 }
 
 .content-wrap {
-  width: 80%;
-  height: 800000px;
+  width: 73%;
   margin-left: auto;
+  padding: 0 5rem;
+
 }
 
 .navigation-wrapper > ul > li {

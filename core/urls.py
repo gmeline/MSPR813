@@ -3,7 +3,6 @@ from . import views
 from .views import GeneratedImageListView
 
 urlpatterns = [
-    path('', )
     path('', views.accueil, name='accueil'),
     path('recherche/', views.recherche, name='recherche'),
     path('create/category/', views.creation_categorie, name='creation_categorie'),

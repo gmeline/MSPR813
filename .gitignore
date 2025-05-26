@@ -3,3 +3,5 @@ venv
 mspr-454808-baf9c7d409e4.json
 __pycache__/
 *.pyc
+**/migrations/*.py
+**/migrations/*.pyc
