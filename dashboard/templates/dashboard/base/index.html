@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/dashboard/style.css">
+{% endblock %}
+{% block content %}
+<h1> JE SUIS UN DASHBOARD</h1>
+    <nav CLASS="nav-wrapper">
+        <ul class="tabs-container">
+            <li><a href="/dashboard" class="tab-link{% if current_path == '/dashboard/' %} active{% endif %}">Travail</a></li>
+            <li><a href="/dashboard/criminality" class="tab-link{% if current_path == '/dashboard/criminality' %} active{% endif %}">Criminalité</a></li>
+            <li><a href="/dashboard/elections" class="tab-link{% if current_path == '/dashboard/elections' %} active{% endif %}">Eléctions</a></li>
+        </ul>
+    </nav>
+    <div class="filter-wrapper">
+        <svg fill="#000000" class="icon" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<title>bars-filter</title>
+<path d="M30 6.749h-28c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h28c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0zM24 14.75h-16c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h16c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0zM19 22.75h-6.053c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h6.053c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z"></path>
+</svg>
+        <form method="get" action="">
+            <select name="years" id="years" class="select-field">
+            {% for year in years_list %}
+            <option>{{ year }}</option>
+            {% endfor %}
+        </select>
+        <select name="departements" id="departements" class="select-field">
+            <option>Tous</option>
+            {% for departement in available_departements %}
+            <option value="{{ departement.id }}">{{ departement.label }}</option>
+            {% endfor %}
+        </select>
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
+    <div class="content-wrapper">
+        {% block stats %} {% endblock %}
+    </div>
+{% endblock %}
