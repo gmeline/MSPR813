@@ -87,3 +87,26 @@ class DensityPopulation(models.Model):
 
     class Meta:
         db_table = 'density_population'
+
+class Prediction2027(models.Model):
+    code_du_departement = models.IntegerField(null=True, blank=True)
+    libelle_du_departement = models.TextField(null=True, blank=True)
+    code_de_la_circonscription = models.TextField(blank=True, primary_key=True)
+    gagnant_precedent = models.TextField(null=True, blank=True)
+    encodage_sans_centre_gagnant_precedent = models.IntegerField(null=True, blank=True)
+    encodage_avec_centre_gagnant_precedent = models.IntegerField(null=True, blank=True)
+    encodage_centre_extremes_gagnant_precedent = models.IntegerField(null=True, blank=True)
+    instabilite_sans_centre = models.IntegerField(null=True, blank=True)
+    poids_nuance_sans_centre = models.IntegerField(null=True, blank=True)
+    desir_changement_sans_centre = models.IntegerField(null=True, blank=True)
+    instabilite_avec_centre = models.IntegerField(null=True, blank=True)
+    poids_nuance_avec_centre = models.IntegerField(null=True, blank=True)
+    desir_changement_avec_centre = models.IntegerField(null=True, blank=True)
+    instabilite_centre_extremes = models.IntegerField(null=True, blank=True)
+    poids_nuance_centre_extremes = models.IntegerField(null=True, blank=True)
+    desir_changement_centre_extremes = models.IntegerField(null=True, blank=True)
+    is_2024 = models.BooleanField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'prediction_2027'
+        managed = False
