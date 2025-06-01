@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/prediction/prediction/style.css">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Prédiction d’orientation politique</h2>
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            <li>
+                <label for="code_departement">Code du département</label>
+                <input type="text" name="code_departement" required>
+            </li>
+            <li>
+                <label for="numero_circonscription">Numéro de la circonscription</label>
+                <input type="number" name="numero_circonscription" required>
+            </li>
+            <li>
+                <label for="insecurite">Insécurité (taux pour mille)</label>
+                <input type="text" name="insecurite" required>
+            </li>
+        </ul>
+        <button type="submit">Prédire</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        <h3>🎯 Résultat de la prédiction</h3>
+        <p><strong class="label">{{ params_utilises.prediction_label }}</strong></p>
+        <p class="valeur-brute">(Valeur brute : {{ prediction }})</p>
+    </div>
+    {% endif %}
+
+    {% if params_utilises %}
+    <div class="params">
+        <h3>🧾 Paramètres utilisés</h3>
+        <ul>
+            <li><strong>Code circonscription :</strong> {{ params_utilises.code_circo }}</li>
+            <li><strong>Encodage gagnant précédent :</strong> {{ params_utilises.encodage_sans_centre_gagnant_precedent }}</li>
+            <li><strong>Insécurité :</strong> {{ params_utilises.insecurite }}</li>
+            <li><strong>Densité :</strong> {{ params_utilises.densite }}</li>
+            <li><strong>Instabilité :</strong> {{ params_utilises.instabilite_centre_extremes }}</li>
+            <li><strong>Poids nuance :</strong> {{ params_utilises.poids_nuance_centre_extremes }}</li>
+            <li><strong>Désir de changement :</strong> {{ params_utilises.desir_changement_centre_extremes }}</li>
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
