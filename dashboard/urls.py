@@ -4,6 +4,5 @@ from dashboard import views
 
 urlpatterns = [
     path('', views.travail, name='dashboard'),
-    path('criminality', views.criminality, name='dashboard'),
-    path('elections', views.elections, name='dashboard'),
+    path('nuance-per-depertement', views.criminality, name='dashboard'),
 ]

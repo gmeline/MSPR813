@@ -1,25 +1,33 @@
 {% extends '../base/index.html' %}
 {% block stats %}
+   <div class="stat-section">
+        <h2>Désir de changement sans centre</h2>
 <div class="stat-container">
-<div class="stat-item">
-<img src="data:image/png;base64,{{ unemployed_data }}" alt="Sales dfsfd">
-    <p>Cheumeurs par departament in 2019</p>
+    {%for url in resultSanCentre %}
+<div class="stat-item openable-item">
+<img src="../../../static/img/{{ url }}" alt="Sales dfsfd">
 </div>
-<div class="stat-item">
-<img src="data:image/png;base64,{{ taux_chomage }}" alt="Sales dfsfd">
-    <p>Average Taux de chommeurs par departement en 2019</p>
+    {% endfor %}
 </div>
-    <div class="stat-item">
-<img src="data:image/png;base64,{{ population }}" alt="Sales dfsfd">
-    <p>population par departement en 2019</p>
+   </div>
+<div class="stat-section">
+    <h2>Désir de changement avec centre</h2>
+<div class="stat-container">
+    {%for url in resultAvecCentre %}
+<div class="stat-item openable-item">
+<img src="../../../static/img/{{ url }}" alt="Sales dfsfd">
 </div>
-    <div class="stat-item">
-<img src="data:image/png;base64,{{ taux_chomage_59 }}" alt="Sales dfsfd">
-    <p>population par departement en 2019</p>
+    {% endfor %}
 </div>
-    <div class="stat-item">
-<img src="data:image/png;base64,{{ chomeurs }}" alt="Sales dfsfd">
-    <p>population par departement en 2019</p>
+   </div>
+<div class="stat-section">
+    <h2>Désir de changement avec centre</h2>
+<div class="stat-container">
+    {%for url in resultAvecCentreExtreme %}
+<div class="stat-item openable-item">
+<img src="../../../static/img/{{ url }}" alt="Sales dfsfd">
 </div>
+    {% endfor %}
 </div>
+   </div>
 {% endblock %}

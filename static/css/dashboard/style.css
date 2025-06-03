@@ -1,12 +1,11 @@
-h1 {
-    margin-bottom: 1rem;
-}
+
 .tabs-container {
     display: flex;
     justify-content: space-around;
     gap: 2rem;
     width: fit-content;
     border-bottom: 1px solid #d1d5db;
+    margin-top: 5rem;
 }
 
 .nav-wrapper {
@@ -45,24 +44,29 @@ h1 {
   background-color: #18be61;
   border-radius: 1px;
 }
-
+.stat-section {
+    margin: 3rem 0;
+    h2 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+}
 .stat-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1.5rem;
-    margin-top: 1.5rem;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 1.5rem;
+
 }
 
 .stat-container > .stat-item {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     padding: 20px;
     align-items: center;
     justify-content: center;
+cursor: pointer;
 
 
     img {
@@ -94,4 +98,8 @@ font-size: 0.9rem;
 
 .filter-wrapper >.icon{
     width: 1.3rem;
+}
+
+iframe {
+    margin-top: 1.5rem;
 }

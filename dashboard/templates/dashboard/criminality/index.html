@@ -1,4 +1,10 @@
 {% extends '../base/index.html' %}
+{% load static %}
 {% block stats %}
-<h2>Je suis Criminality stat</h2>
+{% for url in graphs %}
+<iframe src="{% static '' %}visualizations/{{ url }}"
+  width="100%"
+  height="600"
+  style="border: none;">></iframe>
+{% endfor %}
 {% endblock %}
