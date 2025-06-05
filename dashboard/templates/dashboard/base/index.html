@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/dashboard/style.css">
+<script src="../static/js/index.js"></script>
+{% endblock %}
+{% block content %}
+    <nav CLASS="nav-wrapper">
+        <ul class="tabs-container">
+            <li><a href="/dashboard" class="tab-link{% if current_path == '/dashboard/' %} active{% endif %}">Prediction des élections 2027</a></li>
+            <li><a href="/dashboard/nuance-per-depertement" class="tab-link{% if current_path == '/dashboard/nuance-per-depertement' %} active{% endif %}">Nuance par circonscription</a></li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper" >
+        {% block stats %} {% endblock %}
+         <dialog id="dialog-modal" class="modal-dialog">
+             <button id="close-modal-button" class="close-button">X</button>
+         </dialog>
+    </div>
+
+{% endblock %}

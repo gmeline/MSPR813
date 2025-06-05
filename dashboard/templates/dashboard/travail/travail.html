@@ -1,0 +1,33 @@
+{% extends '../base/index.html' %}
+{% block stats %}
+   <div class="stat-section">
+        <h2>Désir de changement sans centre</h2>
+<div class="stat-container">
+    {%for url in resultSanCentre %}
+<div class="stat-item openable-item">
+<img src="../../../static/img/{{ url }}" alt="Sales dfsfd">
+</div>
+    {% endfor %}
+</div>
+   </div>
+<div class="stat-section">
+    <h2>Désir de changement avec centre</h2>
+<div class="stat-container">
+    {%for url in resultAvecCentre %}
+<div class="stat-item openable-item">
+<img src="../../../static/img/{{ url }}" alt="Sales dfsfd">
+</div>
+    {% endfor %}
+</div>
+   </div>
+<div class="stat-section">
+    <h2>Désir de changement avec centre</h2>
+<div class="stat-container">
+    {%for url in resultAvecCentreExtreme %}
+<div class="stat-item openable-item">
+<img src="../../../static/img/{{ url }}" alt="Sales dfsfd">
+</div>
+    {% endfor %}
+</div>
+   </div>
+{% endblock %}

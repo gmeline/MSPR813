@@ -4,6 +4,9 @@
   box-sizing: content-box;
   font-size: 1.1rem;
   font-family: "Funnel Display", sans-serif;
+  list-style-type: none;
+  text-decoration: none;
+
 }
 
 body {
@@ -25,13 +28,14 @@ aside {
 }
 
 .content-wrap {
-  width: 80%;
-  height: 800000px;
+  width: 73%;
   margin-left: auto;
+  padding: 1rem 5rem;
+
 }
 
-li {
-  list-style-type: none;
+.navigation-wrapper > ul > li {
+
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -210,4 +214,39 @@ li {
 .exploration-part.active-item:hover {
   background-color: #1f3027;
   cursor: default;
+}
+
+.modal-dialog {
+  margin: auto;
+  width: 60%;
+  position: relative;
+  outline: inherit;
+  border: none;
+  border-radius: 0.5rem;
+
+;
+   img {
+       height: 90dvh;
+     display: block;
+  margin-left: auto;
+  margin-right: auto;
+    }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    background: none;
+	color: #62666c;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: inherit;
+  }
+
+  .close-button:hover{
+    color: #18be61;
+    transition: ease-in-out 0.2s;
+  }
 }
